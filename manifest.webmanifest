@@ -1,0 +1,19 @@
+{
+  "name": "Jadwal Kuliah â€” Muhammad Rizky Prasetya",
+  "short_name": "Jadwal Volta",
+  "description": "Jadwal kuliah, agenda UTS, materi, dan silabus dalam satu halaman.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f0e4",
+  "theme_color": "#f6f0e4",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
