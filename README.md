@@ -39,4 +39,6 @@ README.md
 
 ## Deploy
 
-Repo ini statis. Di Vercel cukup import repo, framework preset **Other**, tanpa build command, output directory `.`.
+Repo ini statis dan otomatis dideploy ke **GitHub Pages** lewat GitHub Actions (`.github/workflows/pages.yml`) setiap kali push ke `main`.
+
+**Live:** https://voltakyy.github.io/jadwal-volta-v2/
