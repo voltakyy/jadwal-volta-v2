@@ -1036,10 +1036,18 @@ body.uts-mode .today-summary::after{content:"MASA UTS";background:var(--tomato-i
   text-transform:uppercase;color:var(--gold-ink);
 }
 .agenda-row{
+  position:relative;
   border-bottom:1.5px dashed rgba(36,34,31,.22);
   padding:15px 20px;gap:16px;
   transition:background-color .2s ease,opacity .2s ease;
 }
+.agenda-row::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:var(--mustard);opacity:var(--row-tint,0);
+  transition:opacity .2s ease;
+}
+.agenda-row:hover::before,.agenda-row.is-today::before{opacity:0}
+.agenda-row > *{position:relative;z-index:1}
 .agenda-row:hover{background:#fff8e6}
 .agenda-row.is-today{background:var(--mustard-soft)}
 .agenda-row.is-past{opacity:.52}
@@ -1060,7 +1068,7 @@ body.uts-mode .today-summary::after{content:"MASA UTS";background:var(--tomato-i
   font-family:var(--fm);font-size:8.5px;font-weight:700;letter-spacing:.05em;
   border:1px solid currentColor;border-radius:4px;padding:2px 6px;
 }
-.agenda-kind.uts{background:var(--mustard-soft);color:var(--gold-ink)}
+.agenda-kind.uts{background:var(--mustard-soft);color:var(--ink);border-color:var(--ink);font-weight:700}
 .agenda-kind.mentoring{background:var(--teal-soft);color:var(--teal)}
 .agenda-sesi{font-family:var(--fm);font-size:9.5px;color:var(--ink-faint)}
 .agenda-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--ink);line-height:1.3}
@@ -1246,10 +1254,18 @@ body.uts-mode #agenda .agenda-panel-head{background:linear-gradient(135deg,var(-
 }
 .uts-banner-left{display:flex;align-items:center;gap:13px;min-width:0}
 .uts-flag{
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
   background:var(--ink);color:var(--mustard);border:2px solid var(--ink);
-  box-shadow:2px 2px 0 var(--tomato);font-family:var(--fm);font-size:8.5px;
-  font-weight:700;letter-spacing:.12em;padding:5px 8px;border-radius:6px;
-  white-space:nowrap;transform:rotate(-2deg);
+  box-shadow:3px 3px 0 var(--tomato-ink);padding:5px 10px 6px;border-radius:6px;
+  white-space:nowrap;transform:rotate(-2deg);line-height:1;flex-shrink:0;
+}
+.uts-flag-kicker{
+  font-family:var(--fm);font-size:6.5px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,253,247,.72);
+}
+.uts-flag-word{
+  font-family:var(--fd);font-size:18px;font-weight:800;letter-spacing:.04em;
+  color:var(--mustard);margin-top:1px;
 }
 .uts-banner-title{font-family:var(--fd);font-size:15px;font-weight:750;color:var(--ink)}
 .uts-banner-sub{font-family:var(--fm);font-size:9px;color:var(--ink-soft);margin-top:2px}
@@ -2788,7 +2804,10 @@ function renderUtsBanner(){
   el.innerHTML = `
     <div class="uts-banner">
       <div class="uts-banner-left">
-        <span class="uts-flag">MASA UTS</span>
+        <span class="uts-flag" aria-label="Masa UTS">
+          <span class="uts-flag-kicker" aria-hidden="true">Masa</span>
+          <span class="uts-flag-word" aria-hidden="true">UTS</span>
+        </span>
         <div>
           <div class="uts-banner-title">UTS Gasal 2026/2027</div>
           <div class="uts-banner-sub">2–13 November 2026 • Kuliah reguler diredam selama ujian</div>
@@ -3100,7 +3119,7 @@ function renderAgenda(){
   const HARI = ['MIN','SEN','SEL','RAB','KAM','JUM','SAB'];
   const BULAN = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGU','SEP','OKT','NOV','DES'];
 
-  list.innerHTML = eventsData.map(ev=>{
+  list.innerHTML = eventsData.map((ev, i)=>{
     const d = new Date(`${ev.tanggal}T00:00:00`);
     const start = eventStartDate(ev);
     const end = eventEndDate(ev);
@@ -3114,7 +3133,7 @@ function renderAgenda(){
     else if(diff === 1){ cdLabel='Besok'; cdCls=''; rowCls=''; }
     else { cdLabel='H-'+diff; cdCls=''; rowCls=''; }
 
-    return `<div class="agenda-row ${rowCls}">
+    return `<div class="agenda-row ${rowCls}" style="--row-tint:${(0.03 + i * 0.01).toFixed(3)}">
       <div class="agenda-date">
         <span class="dow">${HARI[d.getDay()]}</span>
         <span class="num">${d.getDate()}</span>
