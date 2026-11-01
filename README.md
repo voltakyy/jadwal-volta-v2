@@ -48,4 +48,4 @@ Repo ini statis dan otomatis dideploy ke **GitHub Pages** lewat GitHub Actions (
 
 ## Status deploy
 
-Workflow `.github/workflows/heartbeat.yml` mengecek situs live setiap hari pukul 03.23 WIB, lalu mencatat status HTTP, waktu respons, dan judul halaman ke [`status/heartbeat.json`](status/heartbeat.json). Ringkasannya ada di [`status/README.md`](status/README.md). Hasil pengecekan di-commit otomatis setiap hari.
+Workflow `.github/workflows/heartbeat.yml` mengecek situs live setiap hari pukul 19.17 WIB, lalu mencatat status HTTP, waktu respons, dan judul halaman ke [`status/heartbeat.json`](status/heartbeat.json). Ringkasannya ada di [`status/README.md`](status/README.md). Hasil pengecekan di-commit otomatis setiap hari.

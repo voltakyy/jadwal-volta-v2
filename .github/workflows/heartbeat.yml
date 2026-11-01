@@ -2,8 +2,8 @@ name: Heartbeat status
 
 on:
   schedule:
-    # 20:23 UTC = 03:23 WIB, setiap hari.
-    - cron: '23 20 * * *'
+    # 12:17 UTC = 19:17 WIB, setiap hari.
+    - cron: '17 12 * * *'
   workflow_dispatch:
 
 permissions:
