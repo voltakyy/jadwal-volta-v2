@@ -1,0 +1,45 @@
+name: Heartbeat status
+
+on:
+  schedule:
+    # 20:23 UTC = 03:23 WIB, setiap hari.
+    - cron: '23 20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: heartbeat
+  cancel-in-progress: false
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Cek situs dan tulis status
+        run: node scripts/heartbeat.mjs
+
+      - name: Commit jika ada perubahan
+        run: |
+          git config user.name "voltakyy"
+          git config user.email "281194412+voltakyy@users.noreply.github.com"
+          git add status/heartbeat.json status/README.md
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan."
+            exit 0
+          fi
+          git commit -m "chore(status): heartbeat $(date -u +%F)"
+          git push
+
+      - name: Tandai gagal jika situs tidak sehat
+        run: |
+          node -e "const s=require('./status/heartbeat.json'); process.exit(s.checks.at(-1).ok?0:1)"

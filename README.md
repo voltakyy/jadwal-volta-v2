@@ -33,7 +33,10 @@ Lalu buka `http://localhost:8080`.
 ## Struktur
 
 ```
-index.html   # seluruh aplikasi: HTML, CSS, JavaScript, data
+index.html                 # seluruh aplikasi: HTML, CSS, JavaScript, data
+scripts/heartbeat.mjs      # pengecekan uptime harian
+status/heartbeat.json      # riwayat 30 pengecekan terakhir
+status/README.md           # ringkasan status yang dibuat otomatis
 README.md
 ```
 
@@ -42,3 +45,7 @@ README.md
 Repo ini statis dan otomatis dideploy ke **GitHub Pages** lewat GitHub Actions (`.github/workflows/pages.yml`) setiap kali push ke `main`.
 
 **Live:** https://voltakyy.github.io/jadwal-volta-v2/
+
+## Status deploy
+
+Workflow `.github/workflows/heartbeat.yml` mengecek situs live setiap hari pukul 03.23 WIB, lalu mencatat status HTTP, waktu respons, dan judul halaman ke [`status/heartbeat.json`](status/heartbeat.json). Ringkasannya ada di [`status/README.md`](status/README.md). Hasil pengecekan di-commit otomatis setiap hari.
