@@ -9,7 +9,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23101B31'/%3E%3Crect%20x='14'%20y='18'%20width='36'%20height='30'%20rx='6'%20fill='none'%20stroke='%23C8952F'%20stroke-width='4'/%3E%3Cpath%20d='M14%2030h36'%20stroke='%23C8952F'%20stroke-width='4'/%3E%3Cpath%20d='M24%2014v8M40%2014v8'%20stroke='%23fff'%20stroke-width='4'%20stroke-linecap='round'/%3E%3C/svg%3E">
 
 <style>
 /* ============ RESET ============ */
@@ -717,6 +718,219 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
   .schedule-card.is-current{transform:none !important}
   .schedule-card:hover{transform:none !important}
 }
+/* ============================================================
+   V2 REFRESH — sistem visual + mode UTS
+   ============================================================ */
+:root{
+  --navy:#101B31;
+  --gold:#C8952F;
+  --teal:#15736F;
+  --bg:#F5F3EE;
+  --surface:#FFFFFF;
+  --tp:#1A2233;
+  --ts:#6B7280;
+  --border:#E6E2D8;
+  --success:#2E7D5B;
+  --warning:#B9812A;
+  --danger:#B4483F;
+  --rb:10px;
+  --rc:16px;
+  --sh-sm:0 1px 2px rgba(16,27,49,.05);
+  --sh-hv:0 14px 32px rgba(16,27,49,.10);
+  --fd:'Fraunces',Georgia,'Times New Roman',serif;
+  --hh:68px;
+}
+body{
+  background:
+    radial-gradient(1000px 420px at 10% -10%, rgba(200,149,47,.12), transparent 62%),
+    radial-gradient(760px 340px at 92% -4%, rgba(21,115,111,.07), transparent 62%),
+    var(--bg);
+  color:var(--tp);
+}
+::selection{background:var(--gold);color:#101B31}
+h1,h2{font-family:var(--fd);font-weight:600;letter-spacing:-.02em}
+
+/* HEADER */
+.header{background:rgba(255,255,255,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(230,226,216,.8)}
+.header.scrolled{background:rgba(255,255,255,.94);box-shadow:0 12px 32px rgba(16,27,49,.07);border-bottom-color:var(--border)}
+.header-brand-title{font-family:var(--fd);font-size:20px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.header-brand-title::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--gold);flex-shrink:0}
+.header-brand-sub{font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ts)}
+.header-nav a{border-radius:100px;padding:7px 12px}
+.header-nav a.active{background:var(--navy);color:#fff}
+.header-nav a.active:hover{background:var(--navy);color:#fff}
+@media(max-width:1100px){
+  .header-nav{background:rgba(255,255,255,.98);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:10px}
+  .header-nav a{border-radius:10px}
+}
+
+/* HERO */
+.page-intro{padding:var(--sp8) 0 var(--sp6)}
+.page-intro .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.14em}
+.page-intro .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.page-intro h1{font-size:clamp(36px,5.4vw,56px);line-height:1.02;letter-spacing:-.035em;margin-bottom:14px}
+.page-intro p{font-size:16px;line-height:1.65;color:var(--ts);max-width:600px}
+.student-info{border-top:none;border-bottom:none;padding:0;margin-top:24px;gap:8px}
+.student-info-item{background:rgba(255,255,255,.72);border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:12.5px;backdrop-filter:blur(6px)}
+.student-info-item svg{width:14px;height:14px;color:var(--gold)}
+@media(max-width:600px){
+  .page-intro{padding:40px 0 28px}
+  .student-info-item{padding:6px 11px;font-size:12px}
+}
+
+/* TODAY SUMMARY — kartu fokus gelap */
+.today-summary{background:radial-gradient(120% 150% at 100% 0%,rgba(200,149,47,.18),transparent 55%),linear-gradient(150deg,#0D1628 0%,#15223B 55%,#1B2D4D 100%);
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px;box-shadow:0 24px 64px rgba(16,27,49,.28);color:#fff;position:relative;overflow:hidden}
+.today-summary::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(80% 90% at 82% 0%,#000,transparent 72%);
+  mask-image:radial-gradient(80% 90% at 82% 0%,#000,transparent 72%)}
+@media(max-width:768px){.today-summary{padding:24px}}
+.today-header{position:relative;z-index:1}
+.today-date .day-name{font-family:var(--fd);font-size:27px;font-weight:600;color:#fff;letter-spacing:.01em}
+.today-date .full-date{color:#9DABC4;font-size:12px}
+.today-class-count{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#E9EEF7;border-radius:100px;padding:7px 14px;font-size:12.5px}
+.today-class-count svg{color:var(--gold);width:15px;height:15px}
+.today-next{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}
+.today-next-icon{background:var(--gold);color:#101B31;border-radius:12px;width:42px;height:42px}
+.today-next-label{color:#93A3BE;font-size:10.5px}
+.today-next-course{color:#fff;font-size:19px}
+.today-next-time{color:#B7C3D7;font-size:13.5px}
+.today-next-status{margin-top:10px}
+.st-upcoming{background:rgba(101,132,255,.18);color:#C0CDFF}
+.st-upcoming .dot{background:#C0CDFF}
+.st-ongoing{background:rgba(64,180,133,.18);color:#8FE3BC}
+.st-ongoing .dot{background:#8FE3BC}
+.st-free{background:rgba(200,149,47,.18);color:#F0C97A}
+.st-free .dot{background:#F0C97A}
+.today-next-countdown{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);color:#A9B6CC;border-radius:10px;padding:7px 11px}
+.today-next-countdown .cd-value{color:var(--gold)}
+body.uts-mode .today-summary{border-color:rgba(200,149,47,.30);box-shadow:0 24px 64px rgba(16,27,49,.30),0 0 0 1px rgba(200,149,47,.18)}
+
+/* SECTION HEAD */
+.sec{margin-top:64px}
+.sec-h h2{font-family:var(--fd);font-size:32px;font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.sec-h h2::before{content:"";display:block;width:26px;height:3px;border-radius:3px;background:var(--gold);margin-bottom:10px}
+.sec-h .sub{font-size:13.5px;line-height:1.6;margin-top:6px}
+@media(max-width:768px){.sec{margin-top:52px}.sec-h h2{font-size:26px}}
+
+/* AGENDA */
+.agenda-panel{border-radius:18px;box-shadow:var(--sh-sm)}
+.agenda-panel-head{background:linear-gradient(180deg,#FBFAF7,#FFFFFF)}
+.agenda-panel-head h3{font-size:14px;letter-spacing:.01em}
+.agenda-panel-head span{font-size:11.5px}
+.agenda-row:hover{background:#FBFAF6}
+.agenda-date{background:#F7F5EF;border-color:#E9E5DB;border-radius:12px}
+.agenda-row.is-today{background:#FFF9EA}
+.agenda-kind.uts{background:#FBEFD8;color:#8A5A00}
+.agenda-kind.mentoring{background:#E4F2F1}
+.agenda-name{font-size:15.5px}
+.agenda-count .cd{font-size:11.5px}
+.mentoring-card{border-radius:18px;background:radial-gradient(130% 130% at 100% 0%,rgba(200,149,47,.22),transparent 55%),linear-gradient(150deg,#101B31,#1B2D4D);box-shadow:0 20px 48px rgba(16,27,49,.24)}
+.mentoring-card h3{font-family:var(--fd);font-size:24px;font-weight:600}
+.agenda-tip{border-radius:0 10px 10px 0;background:#FFFDF8;border-color:#EFE8D8;border-left-color:var(--gold)}
+body.uts-mode #agenda .agenda-panel{border-color:#EAD8B2;box-shadow:0 18px 44px rgba(200,149,47,.10)}
+body.uts-mode #agenda .agenda-panel-head{background:linear-gradient(135deg,#FBF2DF,#FFFDF8)}
+@media(max-width:620px){
+  .agenda-row{grid-template-columns:52px minmax(0,1fr) auto;gap:10px;padding:14px}
+  .agenda-date{min-height:62px;padding:6px 4px}
+  .agenda-date .num{font-size:21px}
+  .agenda-count{grid-column:3;grid-row:1;align-self:start;flex-direction:column;align-items:flex-end;gap:0;padding-top:2px}
+  .agenda-count .cd{font-size:10.5px;padding:3px 8px}
+  .agenda-meta{gap:2px 10px}
+  .agenda-meta span{font-size:11.5px}
+}
+
+/* DAY TABS — segmented pills */
+.day-tabs{display:inline-flex;gap:4px;padding:4px;background:#ECE8DE;border:1px solid #E2DDD1;border-radius:14px;max-width:100%;overflow-x:auto;scrollbar-width:none;margin-bottom:2px}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{border:none;border-radius:10px;padding:8px 14px;margin:0;font-size:13.5px;font-weight:600;color:#6F6A5E}
+.day-tab::after{display:none}
+.day-tab:hover{color:var(--navy);background:rgba(255,255,255,.55)}
+.day-tab.active{background:var(--navy);color:#fff;border-bottom-color:transparent}
+.day-tab.active:hover{background:var(--navy);color:#fff}
+.day-tab .cc{background:rgba(16,27,49,.07);color:#6F6A5E}
+.day-tab.has-c .cc{background:var(--teal);color:#fff}
+.day-tab.active .cc{background:rgba(255,255,255,.18);color:#fff}
+@media(max-width:620px){
+  .day-tabs{display:grid;grid-template-columns:repeat(3,1fr);width:100%;gap:5px}
+  .day-tab{padding:9px 6px;text-align:center;font-size:13px}
+}
+
+/* SCHEDULE */
+.schedule-list{gap:12px;margin-top:24px}
+.schedule-card{border-radius:16px;padding:22px 26px;grid-template-columns:132px 1fr auto;box-shadow:var(--sh-sm)}
+@media(max-width:900px){.schedule-card{grid-template-columns:120px 1fr;padding:18px 20px}}
+@media(max-width:600px){.schedule-card{grid-template-columns:1fr;padding:16px;border-radius:14px;gap:var(--sp3)}}
+@media(hover:hover){.schedule-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(16,27,49,.10);border-color:#D9D2C4}}
+.card-course{font-size:16.5px}
+.schedule-regular{display:flex;flex-direction:column;gap:12px}
+.schedule-regular.is-muted .schedule-card{opacity:.58;filter:saturate(.6)}
+.schedule-regular.is-hidden{display:none}
+.uts-no-regular{font-size:13px;color:var(--ts);padding:18px;background:var(--surface);border:1px dashed var(--border);border-radius:14px;text-align:center}
+
+/* UTS BANNER */
+.uts-banner-wrap{margin-top:20px}
+#utsBanner[hidden]{display:none}
+.uts-banner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  background:linear-gradient(135deg,#FBF2DF,#F7E8C8);border:1px solid #EAD8B2;border-radius:16px;padding:14px 18px;box-shadow:0 8px 24px rgba(200,149,47,.10)}
+.uts-banner-left{display:flex;align-items:center;gap:14px;min-width:0}
+.uts-flag{background:var(--navy);color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.12em;padding:6px 10px;border-radius:8px;white-space:nowrap}
+.uts-banner-title{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--navy)}
+.uts-banner-sub{font-size:12px;color:#7A6A4A;margin-top:1px}
+.uts-banner-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.uts-banner-next{font-size:12px;font-weight:600;color:#7A5A1F}
+.uts-banner-cd{font-family:var(--fh);font-size:12px;font-weight:700;color:#fff;background:var(--navy);padding:5px 11px;border-radius:100px;white-space:nowrap}
+@media(max-width:720px){
+  .uts-banner{padding:12px 14px}
+  .uts-banner-left{align-items:flex-start}
+  .uts-banner-right{width:100%;justify-content:space-between;padding-top:10px;border-top:1px dashed #E4D2AA}
+}
+
+/* UTS DAY STRIP */
+.uts-day-strip{background:linear-gradient(150deg,#FFF8E8,#FFFDF8);border:1px solid #EBD9B4;border-radius:16px;padding:16px 18px}
+.uts-day-strip-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.uts-day-strip-title{display:inline-flex;align-items:center;gap:8px;font-family:var(--fh);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A5A00}
+.uts-day-strip-title svg{width:15px;height:15px}
+.uts-day-strip-note{font-size:12px;color:#9A7B3F;font-weight:600}
+.uts-day-item{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:10px 0;border-top:1px dashed #EADFC6}
+.uts-day-item:first-child{border-top:none;padding-top:0}
+.uts-day-item:last-child{padding-bottom:0}
+.uts-day-date{font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A5A00;background:#F6E7C8;border-radius:8px;padding:6px 8px;text-align:center;min-width:58px}
+.uts-day-name{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--navy);line-height:1.3}
+.uts-day-meta{font-size:12px;color:#7A6A4A;margin-top:2px}
+.uts-day-cd{font-family:var(--fh);font-size:11px;font-weight:700;color:#8A5A00;background:#fff;border:1px solid #EBD9B4;padding:4px 9px;border-radius:100px;white-space:nowrap}
+.uts-day-item.is-done{opacity:.55}
+.uts-day-item.is-ongoing .uts-day-cd{background:var(--danger);border-color:var(--danger);color:#fff}
+@media(max-width:620px){
+  .uts-day-strip{padding:14px}
+  .uts-day-item{grid-template-columns:auto 1fr auto;gap:10px}
+  .uts-day-cd{grid-column:auto;justify-self:end;margin-top:0}
+  .uts-day-strip-head{align-items:flex-start}
+}
+
+/* UTS REGULAR TOGGLE */
+.uts-regular-note{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 4px 0;font-size:12.5px;color:var(--ts)}
+.uts-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;font-weight:600;color:var(--navy);user-select:none}
+.uts-toggle input{position:absolute;opacity:0;width:0;height:0}
+.uts-toggle-track{width:34px;height:20px;border-radius:100px;background:#D9D4C8;position:relative;transition:background-color .2s}
+.uts-toggle-track::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform .2s}
+.uts-toggle input:checked + .uts-toggle-track{background:var(--navy)}
+.uts-toggle input:checked + .uts-toggle-track::after{transform:translateX(14px)}
+.uts-toggle input:focus-visible + .uts-toggle-track{outline:2px solid var(--navy);outline-offset:2px}
+
+/* OVERVIEW */
+.overview-card{border-radius:16px;padding:18px 20px}
+.overview-card .count{font-family:var(--fd);font-size:38px}
+@media(hover:hover){.overview-card:hover{transform:translateY(-3px)}}
+.overview-card.uts .count{color:var(--gold)}
+.overview-card.uts .count-label{color:#8A5A00;font-weight:600}
+
+/* KOMPONEN LAIN */
+.tool-card,.materi-main,.silabus-main,.course-list,.consent-card,.guide-card,.strategy-card{border-radius:16px}
+.btn,.todo-add,.pomo-btn{border-radius:10px}
+.footer{background:transparent;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -747,6 +961,9 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
 </header>
 
 <main>
+
+  <!-- UTS MODE BANNER -->
+  <section class="container uts-banner-wrap" id="utsBanner" aria-live="polite" hidden></section>
 
   <!-- PAGE INTRO -->
   <section class="page-intro" id="today">
@@ -1530,6 +1747,40 @@ function formatDateID(d){
   return `${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
 }
 
+/* UTS MODE */
+const UTS_MODE_START = new Date(2026,10,1,0,0,0);
+const UTS_MODE_END = new Date(2026,10,13,23,59,59);
+function isUtsMode(now = new Date()){
+  return now >= UTS_MODE_START && now <= UTS_MODE_END;
+}
+function nextUtsEvent(now = new Date()){
+  return eventsData.find(ev => eventEndDate(ev) > now) || null;
+}
+function utsForDay(dayKey){
+  const idx = DAY_KEYS.indexOf(dayKey);
+  if(idx < 0) return [];
+  return eventsData.filter(ev => new Date(`${ev.tanggal}T00:00:00`).getDay() === idx);
+}
+function utsRelativeLabel(dateStr, now = new Date()){
+  const diff = daysBetweenDates(now, new Date(`${dateStr}T00:00:00`));
+  if(diff === 0) return 'Hari ini';
+  if(diff === 1) return 'Besok';
+  if(diff > 1) return `H-${diff}`;
+  return 'Selesai';
+}
+function formatShortDate(d){
+  const hari = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+  const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  return `${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]}`;
+}
+function utsWhenLabel(ev){
+  const d = new Date(`${ev.tanggal}T00:00:00`);
+  return `${formatShortDate(d)} • ${ev.mulai}–${ev.selesai}`;
+}
+function utsCourseName(nama){
+  return String(nama||'').replace(/^UTS\s+/,'');
+}
+
 /* NEXT CLASS + COUNTDOWN */
 function findNextClass(){
   const now = new Date();
@@ -1575,6 +1826,54 @@ function formatCountdown(info){
   return `${String(h).padStart(2,'0')}j ${String(m).padStart(2,'0')}m`;
 }
 
+/* UTS BANNER */
+function renderUtsBanner(){
+  const el = document.getElementById('utsBanner');
+  if(!el) return;
+  const now = new Date();
+  const active = isUtsMode(now);
+  document.body.classList.toggle('uts-mode', active);
+  if(!active){ el.hidden = true; el.innerHTML = ''; return; }
+  el.hidden = false;
+
+  const todayEv = eventsData.find(e => e.tanggal === dateKey(now));
+  const next = nextUtsEvent(now);
+  let badge = 'UTS berikutnya', title = '', meta = '', right = '';
+  if(todayEv){
+    const start = eventStartDate(todayEv), end = eventEndDate(todayEv);
+    const ongoing = now >= start && now < end;
+    const done = now >= end;
+    badge = ongoing ? 'Sedang berlangsung' : (done ? 'Selesai hari ini' : 'UTS hari ini');
+    title = utsCourseName(todayEv.nama);
+    meta = `${todayEv.mulai}–${todayEv.selesai} • ${todayEv.ruang} • Kursi ${todayEv.kursi}`;
+    right = ongoing ? 'Berlangsung' : (done ? 'Selesai' : utsRelativeLabel(todayEv.tanggal, now));
+  } else if(next){
+    title = utsCourseName(next.nama);
+    meta = `${utsWhenLabel(next)} • ${next.ruang} • Kursi ${next.kursi}`;
+    right = utsRelativeLabel(next.tanggal, now);
+  } else {
+    badge = 'Masa UTS';
+    title = 'Seluruh rangkaian UTS selesai';
+    meta = '2–13 November 2026';
+    right = 'Selesai';
+  }
+
+  el.innerHTML = `
+    <div class="uts-banner">
+      <div class="uts-banner-left">
+        <span class="uts-flag">MASA UTS</span>
+        <div>
+          <div class="uts-banner-title">UTS Gasal 2026/2027</div>
+          <div class="uts-banner-sub">2–13 November 2026 • Kuliah reguler diredam selama ujian</div>
+        </div>
+      </div>
+      <div class="uts-banner-right">
+        <span class="uts-banner-next">${badge}: ${title}${meta?` — ${meta}`:''}</span>
+        <span class="uts-banner-cd">${right}</span>
+      </div>
+    </div>`;
+}
+
 /* TODAY SUMMARY */
 function renderTodaySummary(){
   const container = document.getElementById('todaySummary');
@@ -1587,16 +1886,21 @@ function renderTodaySummary(){
 
   const todayEvent = findTodayEvent(now);
   const info = findNextClass();
+  const utsMode = isUtsMode(now);
+  const nextUts = utsMode ? nextUtsEvent(now) : null;
   const countLabel = todayClasses.some(c=>c.type==='mentoring') ? 'Agenda' : 'Kelas';
+  const countText = utsMode
+    ? `Masa UTS${nextUts ? ' • '+utsRelativeLabel(nextUts.tanggal, now) : ' • Selesai'}`
+    : `${todayClasses.length} ${countLabel}`;
   let html = `<div class="today-header">
     <div class="today-date">
       <span class="day-name">${dayNames[todayKey]||todayKey.toUpperCase()}</span>
       <span class="full-date">${tanggal}</span>
     </div>
-    <div class="today-class-count">${icons.cal} ${todayClasses.length} ${countLabel}</div>
+    <div class="today-class-count">${icons.cal} ${countText}</div>
   </div>`;
 
-  if(todayEvent){
+  if(todayEvent && !(nowMin >= todayEvent.endMin && nextUts)){
     const ev = todayEvent.ev;
     const ongoing = nowMin >= todayEvent.startMin && nowMin < todayEvent.endMin;
     const done = nowMin >= todayEvent.endMin;
@@ -1613,13 +1917,36 @@ function renderTodaySummary(){
       <div class="today-next-icon">${icons.cal}</div>
       <div class="today-next-info">
         <div class="today-next-label">${label}</div>
-        <div class="today-next-course">${ev.nama}</div>
+        <div class="today-next-course">${ev.type === 'uts' ? utsCourseName(ev.nama) : ev.nama}</div>
         <div class="today-next-time">${meta}</div>
         <div class="today-next-time" style="font-size:12px;margin-top:2px">${sub}</div>
         <span class="today-next-status ${cls}"><span class="dot"></span>${statusText}</span>
         ${cd ? `<div class="today-next-countdown">
           <span class="cd-label">Agenda dimulai dalam</span>
           <span class="cd-value" id="eventCdValue">${cd}</span>
+        </div>` : ''}
+      </div>
+    </div>`;
+  } else if(nextUts){
+    const d = new Date(`${nextUts.tanggal}T00:00:00`);
+    const dayOffset = daysBetweenDates(now, d);
+    const startMin = timeToMinutes(nextUts.mulai);
+    const cd = formatCountdown({dayOffset, startMin, ongoing:false});
+    const rel = utsRelativeLabel(nextUts.tanggal, now);
+    const cls = dayOffset <= 1 ? 'st-upcoming' : 'st-free';
+    const dateLabel = `${['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'][d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]}`;
+
+    html += `<div class="today-next">
+      <div class="today-next-icon">${icons.cal}</div>
+      <div class="today-next-info">
+        <div class="today-next-label">UTS BERIKUTNYA</div>
+        <div class="today-next-course">${utsCourseName(nextUts.nama)}</div>
+        <div class="today-next-time">${dateLabel} • ${nextUts.mulai}–${nextUts.selesai} • ${nextUts.ruang} • Kursi ${nextUts.kursi}</div>
+        <div class="today-next-time" style="font-size:12px;margin-top:2px">${nextUts.sesi} • ${nextUts.kode}</div>
+        <span class="today-next-status ${cls}"><span class="dot"></span>${rel}</span>
+        ${cd ? `<div class="today-next-countdown">
+          <span class="cd-label">Ujian dimulai dalam</span>
+          <span class="cd-value" id="utsCdValue">${cd}</span>
         </div>` : ''}
       </div>
     </div>`;
@@ -1685,25 +2012,91 @@ function updateCountdown(){
       }
     }
   }
+  const uel = document.getElementById('utsCdValue');
+  if(uel){
+    const next = nextUtsEvent();
+    if(next){
+      const d = new Date(`${next.tanggal}T00:00:00`);
+      const cd = formatCountdown({dayOffset: daysBetweenDates(new Date(), d), startMin: timeToMinutes(next.mulai), ongoing:false});
+      if(cd && uel.textContent !== cd){
+        uel.textContent = cd;
+        uel.classList.remove('cd-pop');
+        void uel.offsetWidth;
+        uel.classList.add('cd-pop');
+        setTimeout(()=>uel.classList.remove('cd-pop'), 520);
+      }
+    }
+  }
 }
 
 /* SCHEDULE */
 let currentDayKey = 'senin';
 
+let hideRegularClasses = false;
+
+function utsDayStripHTML(dayKey){
+  if(!isUtsMode()) return '';
+  const list = utsForDay(dayKey);
+  if(!list.length) return '';
+  const now = new Date();
+  const HARI = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+  const BULAN = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  const items = list.map(ev=>{
+    const d = new Date(`${ev.tanggal}T00:00:00`);
+    const start = eventStartDate(ev), end = eventEndDate(ev);
+    const ongoing = now >= start && now < end;
+    const done = now >= end;
+    const rel = done ? 'Selesai' : (ongoing ? 'Berlangsung' : utsRelativeLabel(ev.tanggal, now));
+    return `<div class="uts-day-item${done?' is-done':''}${ongoing?' is-ongoing':''}">
+      <div class="uts-day-date">${HARI[d.getDay()]} ${d.getDate()} ${BULAN[d.getMonth()]}</div>
+      <div>
+        <div class="uts-day-name">${ev.nama.replace(/^UTS /,'')}</div>
+        <div class="uts-day-meta">${ev.mulai}–${ev.selesai} • ${ev.ruang} • Kursi ${ev.kursi} • ${ev.sesi}</div>
+      </div>
+      <span class="uts-day-cd">${rel}</span>
+    </div>`;
+  }).join('');
+  return `<div class="uts-day-strip">
+    <div class="uts-day-strip-head">
+      <span class="uts-day-strip-title">${icons.cal} UTS hari ${dayNames[dayKey]||dayKey}</span>
+      <span class="uts-day-strip-note">${list.length} ujian</span>
+    </div>
+    <div class="uts-day-strip-list">${items}</div>
+  </div>`;
+}
+
 function renderSchedule(dayKey){
   currentDayKey = dayKey;
   const container = document.getElementById('scheduleContent');
   const classes = scheduleData[dayKey]||[];
-  if(classes.length===0){
-    container.innerHTML = `<div class="empty-state"><h3>Tidak ada jadwal kuliah</h3><p>Hari ini tidak ada perkuliahan. Gunakan waktu untuk belajar mandiri atau istirahat.</p></div>`;
-    return;
-  }
   const now = new Date();
   const todayKey = DAY_KEYS[now.getDay()];
   const isToday = dayKey === todayKey;
   const nowMin = now.getHours()*60 + now.getMinutes();
+  const utsStrip = utsDayStripHTML(dayKey);
+  const utsActive = isUtsMode() && utsStrip !== '';
 
-  let html='';
+  if(classes.length===0){
+    if(!utsStrip){
+      container.innerHTML = `<div class="empty-state"><h3>Tidak ada jadwal kuliah</h3><p>Hari ini tidak ada perkuliahan. Gunakan waktu untuk belajar mandiri atau istirahat.</p></div>`;
+      return;
+    }
+    container.innerHTML = utsStrip + `<div class="uts-no-regular">Tidak ada kuliah reguler pada hari ini.</div>`;
+    return;
+  }
+
+  let html = utsStrip;
+  if(utsActive){
+    html += `<div class="uts-regular-note">
+      <span>Kuliah reguler kemungkinan diliburkan selama masa UTS.</span>
+      <label class="uts-toggle">
+        <input type="checkbox" id="hideRegularClasses"${hideRegularClasses?' checked':''}>
+        <span class="uts-toggle-track"></span>
+        <span>Sembunyikan kuliah reguler</span>
+      </label>
+    </div>`;
+  }
+  html += `<div class="schedule-regular${utsActive?' is-muted':''}${utsActive&&hideRegularClasses?' is-hidden':''}" id="regularClasses">`;
   classes.forEach((c, i)=>{
     const r=getClassTime(c);
     const sM = timeToMinutes(r.start);
@@ -1725,6 +2118,7 @@ function renderSchedule(dayKey){
       <div class="card-side"><div class="card-kelas-badge">${c.kelas}</div></div>
     </div>`;
   });
+  html += `</div>`;
   container.innerHTML=html;
 }
 
@@ -1751,15 +2145,20 @@ function updateCurrentClassHighlight(){
 function renderWeekOverview(){
   const container=document.getElementById('weekOverview');
   const days=['senin','selasa','rabu','kamis','jumat','sabtu'];
+  const utsMode = isUtsMode();
   let html='';
   days.forEach(d=>{
     const list = scheduleData[d]||[];
-    const count=list.length;
+    const utsList = utsForDay(d);
+    const showUts = utsMode && utsList.length > 0;
+    const count = showUts ? utsList.length : list.length;
     const isAgenda = list.some(c=>c.type==='mentoring');
-    html += `<div class="overview-card ${count===0?'empty':''}">
+    const label = showUts ? 'UTS' : (count===0?'Tidak ada kelas':(isAgenda?'Agenda':'Kelas'));
+    const cls = showUts ? ' uts' : (count===0?' empty':'');
+    html += `<div class="overview-card${cls}">
       <div class="day">${dayNames[d]}</div>
       <div class="count">${count}</div>
-      <div class="count-label">${count===0?'Tidak ada kelas':(isAgenda?'Agenda':'Kelas')}</div>
+      <div class="count-label">${label}</div>
     </div>`;
   });
   container.innerHTML=html;
@@ -2333,6 +2732,15 @@ document.getElementById('exportICS').addEventListener('click',()=>{
 });
 
 /* NAV */
+function initUtsMode(){
+  document.addEventListener('change',(e)=>{
+    if(e.target && e.target.id === 'hideRegularClasses'){
+      hideRegularClasses = e.target.checked;
+      const box = document.getElementById('regularClasses');
+      if(box) box.classList.toggle('is-hidden', hideRegularClasses);
+    }
+  });
+}
 function initTabs(){
   document.querySelectorAll('.day-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
@@ -2408,6 +2816,7 @@ function applyStaggerDelays(){
 
 /* INIT */
 document.addEventListener('DOMContentLoaded',()=>{
+  renderUtsBanner();
   renderTodaySummary();
   renderSchedule('senin');
   renderWeekOverview();
@@ -2418,6 +2827,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderPetaStudi();
   renderTodos();
   renderIPK();
+  initUtsMode();
   initTabs();
   initMenu();
   initScrollSpy();
@@ -2427,7 +2837,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   // Real-time updates
   setInterval(updateCountdown, 15000);
   setInterval(updateCurrentClassHighlight, 20000);
-  setInterval(renderTodaySummary, 180000);
+  setInterval(()=>{ renderUtsBanner(); renderTodaySummary(); }, 180000);
 });
 </script>
 </body>
