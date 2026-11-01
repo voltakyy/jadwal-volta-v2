@@ -10,7 +10,7 @@ Situs di-deploy ke GitHub Pages melalui GitHub Actions.
 
 1. Buka URL dengan parameter versi, misalnya `?v=<commit-sha>`, untuk melewati cache.
 2. Pastikan font Archivo dan Instrument Sans termuat.
-3. Cek mode UTS pada tanggal 1â€“13 November.
+3. Cek mode UTS pada tanggal 1–13 November.
 4. Cek tidak ada overflow horizontal di 360 px dan 1440 px.
 
 ## Rollback

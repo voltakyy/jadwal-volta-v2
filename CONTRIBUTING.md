@@ -12,6 +12,6 @@ Proyek ini adalah situs statis tanpa build step. Semua kode berada di `index.htm
 ## Sebelum push
 
 - Tidak ada horizontal scroll di mobile.
-- Mode UTS masih aktif hanya pada 1â€“13 November 2026.
+- Mode UTS masih aktif hanya pada 1–13 November 2026.
 - Tombol ekspor ICS menghasilkan berkas yang valid.
 - Tidak mengubah repositori v1 `jadwal-volta`.
