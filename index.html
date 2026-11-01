@@ -150,6 +150,61 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
 .today-next-countdown .cd-value{font-family:var(--fh);font-weight:700;color:var(--navy);font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.02em;display:inline-block}
 .cd-value.cd-pop{animation:cdPop 500ms var(--ease-bounce)}
 
+/* AGENDA & UJIAN */
+.agenda-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:var(--sp5);align-items:start}
+@media(max-width:980px){.agenda-layout{grid-template-columns:1fr}}
+.agenda-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--rc);overflow:hidden;box-shadow:var(--sh-sm)}
+.agenda-panel-head{display:flex;align-items:center;justify-content:space-between;gap:var(--sp3);padding:var(--sp4) var(--sp5);border-bottom:1px solid var(--border);background:#FCFCFB}
+.agenda-panel-head h3{font-size:15px;color:var(--navy)}
+.agenda-panel-head span{font-size:12px;color:var(--ts);font-weight:500}
+.agenda-list{display:flex;flex-direction:column}
+.agenda-row{display:grid;grid-template-columns:74px minmax(0,1fr) auto;gap:var(--sp4);padding:var(--sp4) var(--sp5);border-bottom:1px solid var(--border);align-items:center;
+  transition:background-color 250ms var(--ease-smooth),opacity 250ms var(--ease-smooth)}
+.agenda-row:last-child{border-bottom:none}
+.agenda-row:hover{background:#FAFAF9}
+.agenda-row.is-past{opacity:.55}
+.agenda-row.is-today{background:#FFFBF0}
+.agenda-date{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rb);padding:8px 6px;min-height:66px}
+.agenda-date .dow{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ts)}
+.agenda-date .num{font-family:var(--fh);font-size:23px;font-weight:700;color:var(--navy);line-height:1}
+.agenda-date .mon{font-size:9.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ts)}
+.agenda-row.is-today .agenda-date{background:var(--gold);border-color:var(--gold)}
+.agenda-row.is-today .agenda-date .dow,.agenda-row.is-today .agenda-date .num,.agenda-row.is-today .agenda-date .mon{color:var(--navy)}
+.agenda-body{min-width:0}
+.agenda-kicker{display:flex;align-items:center;gap:var(--sp2);margin-bottom:3px}
+.agenda-kind{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:100px}
+.agenda-kind.uts{background:#FFF4E0;color:#9A6400}
+.agenda-kind.mentoring{background:#E8F6F5;color:var(--teal)}
+.agenda-sesi{font-size:11px;font-weight:600;color:var(--ts)}
+.agenda-name{font-family:var(--fh);font-size:15px;font-weight:700;color:var(--tp);line-height:1.3}
+.agenda-meta{display:flex;flex-wrap:wrap;gap:2px var(--sp4);margin-top:5px}
+.agenda-meta span{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ts)}
+.agenda-meta svg{width:13px;height:13px;stroke-width:1.8;color:var(--navy);flex-shrink:0}
+.agenda-meta strong{color:var(--tp);font-weight:600}
+.agenda-count{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.agenda-count .cd{font-family:var(--fh);font-size:12px;font-weight:700;color:var(--navy);background:var(--bg);border:1px solid var(--border);padding:4px 10px;border-radius:100px;white-space:nowrap}
+.agenda-count .cd.today{background:var(--danger);border-color:var(--danger);color:#fff}
+.agenda-count .cd.done{background:var(--bg);color:var(--ts);font-weight:500}
+.agenda-count .jam{font-size:11px;color:var(--ts);font-weight:500;white-space:nowrap}
+@media(max-width:620px){
+  .agenda-row{grid-template-columns:58px minmax(0,1fr);gap:var(--sp3);padding:var(--sp4)}
+  .agenda-count{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--sp2)}
+  .agenda-count .jam{display:none}
+}
+.mentoring-card{background:var(--navy);color:#fff;border-radius:var(--rc);padding:var(--sp5);position:relative;overflow:hidden;box-shadow:0 12px 30px rgba(20,33,61,.18)}
+.mentoring-card::after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:rgba(217,164,65,.16);right:-60px;top:-70px;pointer-events:none}
+.mentoring-card .mc-kicker{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.mentoring-card h3{font-size:21px;color:#fff;margin:7px 0 5px;position:relative}
+.mentoring-card .mc-time{font-size:13.5px;color:#D6DCE8;font-weight:500;position:relative}
+.mentoring-card .mc-loc{display:flex;align-items:center;gap:6px;font-size:12.5px;color:#AEB8CC;margin-top:6px;position:relative}
+.mentoring-card .mc-loc svg{width:14px;height:14px;stroke-width:1.8;color:var(--gold);flex-shrink:0}
+.mc-next{display:flex;align-items:center;justify-content:space-between;gap:var(--sp3);margin-top:var(--sp5);padding-top:var(--sp4);border-top:1px solid rgba(255,255,255,.16);position:relative}
+.mc-next-label{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#AEB8CC;margin-bottom:2px}
+.mc-next-date{font-size:13px;font-weight:600;color:#fff}
+.mc-cd{font-family:var(--fh);font-size:12px;font-weight:700;color:var(--navy);background:var(--gold);padding:5px 11px;border-radius:100px;white-space:nowrap}
+.agenda-tip{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--rb) var(--rb) 0;padding:var(--sp3) var(--sp4);font-size:12px;color:var(--ts);line-height:1.6;margin-top:var(--sp3)}
+.agenda-tip strong{color:var(--navy);font-weight:600}
+
 /* SECTION BASE */
 .sec{margin-top:var(--sp7)}
 .sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp5);flex-wrap:wrap;gap:var(--sp3)}
@@ -218,8 +273,8 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
 .empty-state p{font-size:14px;max-width:320px;margin:0 auto}
 
 /* WEEK OVERVIEW */
-.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--sp3)}
-@media(max-width:900px){.overview-grid{grid-template-columns:repeat(3,1fr)}}
+.overview-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--sp3)}
+@media(max-width:1100px){.overview-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.overview-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:400px){.overview-grid{grid-template-columns:1fr}}
 .overview-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rc);padding:var(--sp4) var(--sp5);
@@ -670,10 +725,11 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
   <div class="container header-inner">
     <a href="#" class="header-brand">
       <span class="header-brand-title">Jadwal Kuliah</span>
-      <span class="header-brand-sub">Semester Gasal 2026/2027</span>
+      <span class="header-brand-sub">Semester Gasal 2026/2027 • v2</span>
     </a>
     <nav class="header-nav" id="headerNav" role="navigation">
       <a href="#today" class="active">Jadwal</a>
+      <a href="#agenda">Agenda</a>
       <a href="#weekly">Mingguan</a>
       <a href="#materi">Materi</a>
       <a href="#silabus">Silabus</a>
@@ -720,6 +776,31 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
     <div class="today-summary" id="todaySummary"></div>
   </section>
 
+  <!-- AGENDA & UJIAN -->
+  <section class="container sec reveal" id="agenda">
+    <div class="sec-h">
+      <div>
+        <h2>Agenda &amp; Ujian</h2>
+        <p class="sub">Jadwal UTS Gasal 2026/2027 sesuai Kartu Ujian, plus agenda rutin Mentoring AIK setiap Sabtu.</p>
+      </div>
+    </div>
+    <div class="agenda-layout">
+      <div class="agenda-panel">
+        <div class="agenda-panel-head">
+          <h3>Ujian Tengah Semester</h3>
+          <span>2–13 November 2026</span>
+        </div>
+        <div class="agenda-list" id="utsList"></div>
+      </div>
+      <aside class="agenda-side" aria-label="Agenda rutin">
+        <div class="mentoring-card" id="mentoringCard"></div>
+        <div class="agenda-tip">
+          <strong>Catatan:</strong> bawa Kartu Ujian, hadir 15 menit sebelum sesi dimulai, dan cek ruang/kursi di kartu sebelum berangkat.
+        </div>
+      </aside>
+    </div>
+  </section>
+
   <!-- WEEKLY SCHEDULE -->
   <section class="container sec reveal" id="weekly">
     <div class="sec-h">
@@ -734,6 +815,7 @@ h1{font-size:36px}h2{font-size:26px}h3{font-size:19px}h4{font-size:15px}
       <button class="day-tab has-c" role="tab" aria-selected="false" data-day="rabu">Rabu <span class="cc">1</span></button>
       <button class="day-tab has-c" role="tab" aria-selected="false" data-day="kamis">Kamis <span class="cc">1</span></button>
       <button class="day-tab" role="tab" aria-selected="false" data-day="jumat">Jumat <span class="cc">0</span></button>
+      <button class="day-tab has-c" role="tab" aria-selected="false" data-day="sabtu">Sabtu <span class="cc">1</span></button>
     </div>
     <div class="schedule-list" id="scheduleContent" role="tabpanel" aria-live="polite"></div>
     <div class="export-bar">
@@ -1074,7 +1156,26 @@ const scheduleData = {
   kamis:[
     {jamKe:"5–6", waktu:"09.50–11.30", nama:"Kepemimpinan dan Komunikasi Interpersonal", kode:"TIF3221206", kelas:"B", ruang:"G0301", sks:2, dosen:"Azizah Fatmawati, M.Sc., S.T."}
   ],
-  jumat:[]
+  jumat:[],
+  sabtu:[
+    {jamKe:"—", waktu:"06.30–08.30", nama:"Mentoring AIK", kode:"AIK", kelas:"M", ruang:"Masjid Sudalmiyah", sks:0, dosen:"Mentor AIK", type:"mentoring", catatan:"Rutin setiap Sabtu"}
+  ]
+};
+
+/* DATA AGENDA & UTS — sumber: Kartu Ujian Tengah Semester Gasal 2026/2027 */
+const eventsData = [
+  {id:"uts-logika", type:"uts", nama:"UTS Logika dan Himpunan", kode:"TIF3221308", tanggal:"2026-11-02", mulai:"12.30", selesai:"14.00", sesi:"Jam 3", ruang:"J0407", kursi:9, dosen:"Reinal Ariyuda, B.Eng., M.Eng."},
+  {id:"uts-alpro", type:"uts", nama:"UTS Algoritma dan Pemrograman", kode:"TIF3221303", tanggal:"2026-11-03", mulai:"10.00", selesai:"11.30", sesi:"Jam 2", ruang:"JSEM2", kursi:10, dosen:"Husni Thamrin, M.T., Ph.D."},
+  {id:"uts-kalkulus", type:"uts", nama:"UTS Kalkulus", kode:"TIF3221305", tanggal:"2026-11-04", mulai:"08.00", selesai:"09.30", sesi:"Jam 1", ruang:"G0303", kursi:24, dosen:"Cahyaningtyas Sekar Wahyuni"},
+  {id:"uts-pemvis", type:"uts", nama:"UTS Pemrograman Visual", kode:"TIF3221307", tanggal:"2026-11-05", mulai:"08.00", selesai:"09.30", sesi:"Jam 1", ruang:"G0305", kursi:20, dosen:"Widi Widayat, S.Kom., M.Eng."},
+  {id:"uts-kepemimpinan", type:"uts", nama:"UTS Kepemimpinan dan Komunikasi Interpersonal", kode:"TIF3221206", tanggal:"2026-11-06", mulai:"13.00", selesai:"14.30", sesi:"Jam 3", ruang:"JSEM2", kursi:46, dosen:"Azizah Fatmawati, M.Sc., S.T."},
+  {id:"uts-eap", type:"uts", nama:"UTS English for Academic Purpose", kode:"TIF1221202", tanggal:"2026-11-09", mulai:"10.00", selesai:"11.30", sesi:"Jam 2", ruang:"L1303", kursi:26, dosen:"Romadhani Wulandari, S.Pd., M.Pd."},
+  {id:"uts-praktikum-alpro", type:"uts", nama:"UTS Praktikum Algoritma dan Pemrograman", kode:"TIF3221104", tanggal:"2026-11-13", mulai:"14.45", selesai:"16.15", sesi:"Jam 4", ruang:"LBVFKI03", kursi:30, dosen:"Dias Fithry Mahmudah, S.Kom., M.Inf."}
+];
+
+const mentoringData = {
+  type:"mentoring", nama:"Mentoring AIK", hari:"Sabtu", mulai:"06.30", selesai:"08.30",
+  ruang:"Masjid Hj. Sudalmiyah Rais", catatan:"Rutin setiap Sabtu • Kampus 2"
 };
 
 /* DATA MATERI */
@@ -1368,7 +1469,7 @@ const kurikulumData = {
   8:{total:"6 SKS",items:[{kode:"TIF3221371",nama:"Skripsi",sks:6,highlight:true}]}
 };
 
-const dayNames = {senin:'SENIN',selasa:'SELASA',rabu:'RABU',kamis:'KAMIS',jumat:'JUMAT'};
+const dayNames = {senin:'SENIN',selasa:'SELASA',rabu:'RABU',kamis:'KAMIS',jumat:'JUMAT',sabtu:'SABTU'};
 const DAY_KEYS = ['minggu','senin','selasa','rabu','kamis','jumat','sabtu'];
 
 /* HELPER */
@@ -1383,6 +1484,50 @@ function timeToMinutes(t){
   const [h,m] = t.split('.').map(Number);
   return h*60 + m;
 }
+function getClassTime(c){
+  if(c && c.waktu){
+    const parts = c.waktu.split('–').map(s=>s.trim());
+    if(parts.length===2 && parts[0] && parts[1]) return {start:parts[0], end:parts[1]};
+  }
+  return getTimeRange(c.jamKe);
+}
+function dateKey(d){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function eventStartDate(ev){
+  return new Date(`${ev.tanggal}T${ev.mulai.replace('.',':')}:00`);
+}
+function eventEndDate(ev){
+  return new Date(`${ev.tanggal}T${ev.selesai.replace('.',':')}:00`);
+}
+function daysBetweenDates(a,b){
+  const A = new Date(a.getFullYear(),a.getMonth(),a.getDate());
+  const B = new Date(b.getFullYear(),b.getMonth(),b.getDate());
+  return Math.round((B-A)/86400000);
+}
+function nextMentoringDate(now = new Date()){
+  const d = new Date(now);
+  let diff = (6 - d.getDay() + 7) % 7;
+  if(diff === 0){
+    const end = new Date(d); end.setHours(8,30,0,0);
+    if(d >= end) diff = 7;
+  }
+  d.setDate(d.getDate() + diff);
+  d.setHours(6,30,0,0);
+  return d;
+}
+function findTodayEvent(now = new Date()){
+  const key = dateKey(now);
+  const uts = eventsData.find(e => e.tanggal === key);
+  if(uts) return {ev:uts, startMin:timeToMinutes(uts.mulai), endMin:timeToMinutes(uts.selesai)};
+  if(now.getDay() === 6) return {ev:mentoringData, startMin:timeToMinutes(mentoringData.mulai), endMin:timeToMinutes(mentoringData.selesai)};
+  return null;
+}
+function formatDateID(d){
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  return `${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+}
 
 /* NEXT CLASS + COUNTDOWN */
 function findNextClass(){
@@ -1392,14 +1537,14 @@ function findNextClass(){
   const todayClasses = scheduleData[todayKey] || [];
 
   for(const c of todayClasses){
-    const r = getTimeRange(c.jamKe);
+    const r = getClassTime(c);
     const sM = timeToMinutes(r.start), eM = timeToMinutes(r.end);
     if(nowMin >= sM && nowMin < eM){
       return {cls:c, dayOffset:0, startMin:sM, endMin:eM, ongoing:true};
     }
   }
   for(const c of todayClasses){
-    const r = getTimeRange(c.jamKe);
+    const r = getClassTime(c);
     const sM = timeToMinutes(r.start);
     if(sM > nowMin){
       return {cls:c, dayOffset:0, startMin:sM, ongoing:false};
@@ -1410,7 +1555,7 @@ function findNextClass(){
     const list = scheduleData[key] || [];
     if(list.length > 0){
       const c = list[0];
-      const r = getTimeRange(c.jamKe);
+      const r = getClassTime(c);
       return {cls:c, dayOffset:d, startMin:timeToMinutes(r.start), ongoing:false};
     }
   }
@@ -1435,20 +1580,50 @@ function renderTodaySummary(){
   const now = new Date();
   const todayKey = DAY_KEYS[now.getDay()];
   const todayClasses = scheduleData[todayKey] || [];
+  const nowMin = now.getHours()*60 + now.getMinutes();
   const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const tanggal = now.getDate()+' '+bulan[now.getMonth()]+' '+now.getFullYear();
 
+  const todayEvent = findTodayEvent(now);
   const info = findNextClass();
+  const countLabel = todayClasses.some(c=>c.type==='mentoring') ? 'Agenda' : 'Kelas';
   let html = `<div class="today-header">
     <div class="today-date">
       <span class="day-name">${dayNames[todayKey]||todayKey.toUpperCase()}</span>
       <span class="full-date">${tanggal}</span>
     </div>
-    <div class="today-class-count">${icons.cal} ${todayClasses.length} Kelas</div>
+    <div class="today-class-count">${icons.cal} ${todayClasses.length} ${countLabel}</div>
   </div>`;
 
-  if(info){
-    const r = getTimeRange(info.cls.jamKe);
+  if(todayEvent){
+    const ev = todayEvent.ev;
+    const ongoing = nowMin >= todayEvent.startMin && nowMin < todayEvent.endMin;
+    const done = nowMin >= todayEvent.endMin;
+    const label = ev.type === 'uts' ? 'UTS HARI INI' : 'AGENDA HARI INI';
+    const cls = ongoing ? 'st-ongoing' : (done ? 'st-free' : 'st-upcoming');
+    const statusText = ongoing ? 'Sedang berlangsung' : (done ? 'Sudah selesai' : 'Segera dimulai');
+    const cd = (!ongoing && !done) ? formatCountdown({dayOffset:0, startMin:todayEvent.startMin, ongoing:false}) : null;
+    const meta = ev.type === 'uts'
+      ? `${ev.mulai}–${ev.selesai} • ${ev.ruang} • Kursi ${ev.kursi}`
+      : `${ev.mulai}–${ev.selesai} • ${ev.ruang}`;
+    const sub = ev.type === 'uts' ? `${ev.sesi} • ${ev.kode}` : ev.catatan;
+
+    html += `<div class="today-next">
+      <div class="today-next-icon">${icons.cal}</div>
+      <div class="today-next-info">
+        <div class="today-next-label">${label}</div>
+        <div class="today-next-course">${ev.nama}</div>
+        <div class="today-next-time">${meta}</div>
+        <div class="today-next-time" style="font-size:12px;margin-top:2px">${sub}</div>
+        <span class="today-next-status ${cls}"><span class="dot"></span>${statusText}</span>
+        ${cd ? `<div class="today-next-countdown">
+          <span class="cd-label">Agenda dimulai dalam</span>
+          <span class="cd-value" id="eventCdValue">${cd}</span>
+        </div>` : ''}
+      </div>
+    </div>`;
+  } else if(info){
+    const r = getClassTime(info.cls);
     const ongoing = info.ongoing;
     const label = ongoing ? 'SEDANG BERLANGSUNG' : (info.dayOffset === 0 ? 'SELANJUTNYA' : 'KELAS BERIKUTNYA');
     const cls = ongoing ? 'st-ongoing' : (info.dayOffset === 0 ? 'st-upcoming' : 'st-free');
@@ -1483,16 +1658,31 @@ function renderTodaySummary(){
 
 /* COUNTDOWN — update value + pop animation */
 function updateCountdown(){
-  const el = document.getElementById('cdValue');
-  if(!el) return;
   const info = findNextClass();
-  const cd = formatCountdown(info);
-  if(cd && el.textContent !== cd){
-    el.textContent = cd;
-    el.classList.remove('cd-pop');
-    void el.offsetWidth;
-    el.classList.add('cd-pop');
-    setTimeout(()=>el.classList.remove('cd-pop'), 520);
+  const el = document.getElementById('cdValue');
+  if(el){
+    const cd = formatCountdown(info);
+    if(cd && el.textContent !== cd){
+      el.textContent = cd;
+      el.classList.remove('cd-pop');
+      void el.offsetWidth;
+      el.classList.add('cd-pop');
+      setTimeout(()=>el.classList.remove('cd-pop'), 520);
+    }
+  }
+  const eel = document.getElementById('eventCdValue');
+  if(eel){
+    const todayEvent = findTodayEvent();
+    if(todayEvent){
+      const cd = formatCountdown({dayOffset:0, startMin:todayEvent.startMin, ongoing:false});
+      if(cd && eel.textContent !== cd){
+        eel.textContent = cd;
+        eel.classList.remove('cd-pop');
+        void eel.offsetWidth;
+        eel.classList.add('cd-pop');
+        setTimeout(()=>eel.classList.remove('cd-pop'), 520);
+      }
+    }
   }
 }
 
@@ -1514,18 +1704,18 @@ function renderSchedule(dayKey){
 
   let html='';
   classes.forEach((c, i)=>{
-    const r=getTimeRange(c.jamKe);
+    const r=getClassTime(c);
     const sM = timeToMinutes(r.start);
     const eM = timeToMinutes(r.end);
     const ongoing = isToday && nowMin >= sM && nowMin < eM;
     html += `<div class="schedule-card${ongoing?' is-current':''}">
       <div class="card-time">
         <span class="card-time-value">${r.start}–${r.end}</span>
-        <span class="card-time-jam">Jam ke-${c.jamKe}</span>
+        <span class="card-time-jam">${c.type==='mentoring' ? 'Rutin Sabtu' : 'Jam ke-'+c.jamKe}</span>
       </div>
       <div class="card-main">
         <div class="card-course">${c.nama}</div>
-        <div class="card-code">${c.kode} • ${c.sks} SKS</div>
+        <div class="card-code">${c.type==='mentoring' ? 'AIK • Agenda rutin' : `${c.kode} • ${c.sks} SKS`}</div>
         <div class="card-meta">
           <div class="card-meta-item">${icons.mapPin}<span>Ruang: <strong>${c.ruang}</strong></span></div>
           <div class="card-meta-item">${icons.user}<span>${c.dosen}</span></div>
@@ -1550,7 +1740,7 @@ function updateCurrentClassHighlight(){
   cards.forEach((card, i) => {
     const c = classes[i];
     if(!c) return;
-    const r = getTimeRange(c.jamKe);
+    const r = getClassTime(c);
     const ongoing = nowMin >= timeToMinutes(r.start) && nowMin < timeToMinutes(r.end);
     card.classList.toggle('is-current', ongoing);
   });
@@ -1559,17 +1749,86 @@ function updateCurrentClassHighlight(){
 /* WEEK OVERVIEW */
 function renderWeekOverview(){
   const container=document.getElementById('weekOverview');
-  const days=['senin','selasa','rabu','kamis','jumat'];
+  const days=['senin','selasa','rabu','kamis','jumat','sabtu'];
   let html='';
   days.forEach(d=>{
-    const count=(scheduleData[d]||[]).length;
+    const list = scheduleData[d]||[];
+    const count=list.length;
+    const isAgenda = list.some(c=>c.type==='mentoring');
     html += `<div class="overview-card ${count===0?'empty':''}">
       <div class="day">${dayNames[d]}</div>
       <div class="count">${count}</div>
-      <div class="count-label">${count===0?'Tidak ada kelas':'Kelas'}</div>
+      <div class="count-label">${count===0?'Tidak ada kelas':(isAgenda?'Agenda':'Kelas')}</div>
     </div>`;
   });
   container.innerHTML=html;
+}
+
+/* AGENDA & UTS */
+function renderAgenda(){
+  const list = document.getElementById('utsList');
+  if(!list) return;
+  const now = new Date();
+  const todayMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const HARI = ['MIN','SEN','SEL','RAB','KAM','JUM','SAB'];
+  const BULAN = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGU','SEP','OKT','NOV','DES'];
+
+  list.innerHTML = eventsData.map(ev=>{
+    const d = new Date(`${ev.tanggal}T00:00:00`);
+    const start = eventStartDate(ev);
+    const end = eventEndDate(ev);
+    const done = now >= end;
+    const ongoing = now >= start && now < end;
+    const diff = daysBetweenDates(todayMid, d);
+    let cdLabel, cdCls, rowCls;
+    if(done){ cdLabel='Selesai'; cdCls='done'; rowCls='is-past'; }
+    else if(ongoing){ cdLabel='Berlangsung'; cdCls='today'; rowCls='is-today'; }
+    else if(diff === 0){ cdLabel='Hari ini'; cdCls='today'; rowCls='is-today'; }
+    else if(diff === 1){ cdLabel='Besok'; cdCls=''; rowCls=''; }
+    else { cdLabel='H-'+diff; cdCls=''; rowCls=''; }
+
+    return `<div class="agenda-row ${rowCls}">
+      <div class="agenda-date">
+        <span class="dow">${HARI[d.getDay()]}</span>
+        <span class="num">${d.getDate()}</span>
+        <span class="mon">${BULAN[d.getMonth()]}</span>
+      </div>
+      <div class="agenda-body">
+        <div class="agenda-kicker"><span class="agenda-kind uts">UTS</span><span class="agenda-sesi">${ev.sesi}</span></div>
+        <div class="agenda-name">${ev.nama}</div>
+        <div class="agenda-meta">
+          <span>${icons.clock}${ev.mulai}–${ev.selesai}</span>
+          <span>${icons.mapPin}${ev.ruang} • Kursi <strong>${ev.kursi}</strong></span>
+          <span>${icons.user}${ev.dosen}</span>
+        </div>
+      </div>
+      <div class="agenda-count"><span class="cd ${cdCls}">${cdLabel}</span><span class="jam">${ev.sesi}</span></div>
+    </div>`;
+  }).join('');
+
+  const mc = document.getElementById('mentoringCard');
+  if(!mc) return;
+  const next = nextMentoringDate(now);
+  const nextDiff = daysBetweenDates(todayMid, next);
+  const nextEnd = new Date(next); nextEnd.setHours(8,30,0,0);
+  let mcLabel;
+  if(now >= next && now < nextEnd) mcLabel = 'Berlangsung';
+  else if(nextDiff === 0) mcLabel = 'Hari ini';
+  else if(nextDiff === 1) mcLabel = 'Besok';
+  else mcLabel = 'H-'+nextDiff;
+
+  mc.innerHTML = `
+    <div class="mc-kicker">Agenda Rutin</div>
+    <h3>${mentoringData.nama}</h3>
+    <div class="mc-time">Setiap ${mentoringData.hari} • ${mentoringData.mulai}–${mentoringData.selesai} WIB</div>
+    <div class="mc-loc">${icons.mapPin}<span>${mentoringData.ruang}</span></div>
+    <div class="mc-next">
+      <div>
+        <div class="mc-next-label">Sesi berikutnya</div>
+        <div class="mc-next-date">${formatDateID(next)}</div>
+      </div>
+      <span class="mc-cd">${mcLabel}</span>
+    </div>`;
 }
 
 /* MATERI */
@@ -2010,28 +2269,65 @@ notesArea.addEventListener('input',()=>{
 });
 
 /* EXPORT ICS */
+function icsEscape(s){
+  return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
+}
+function icsLocalStamp(dateStr, timeStr){
+  const [y,m,d] = dateStr.split('-');
+  const [h,mi] = timeStr.split('.').map(Number);
+  return `${y}${m}${d}T${String(h).padStart(2,'0')}${String(mi).padStart(2,'0')}00`;
+}
 document.getElementById('exportICS').addEventListener('click',()=>{
-  const dayMapICS={senin:0,selasa:1,rabu:2,kamis:3,jumat:4};
-  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Jadwal Kuliah UMS//ID','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+  const dayMapICS={senin:0,selasa:1,rabu:2,kamis:3,jumat:4,sabtu:5};
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Jadwal Volta v2//ID','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+  const stamp=new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';
   const baseDate=new Date(2026,8,14);
+
   Object.keys(scheduleData).forEach(dk=>{
     const dayIdx = dayMapICS[dk];
     (scheduleData[dk]||[]).forEach(c=>{
-      const r=getTimeRange(c.jamKe);
+      if(c.type==='mentoring') return;
+      const r=getClassTime(c);
       const [sh,sm]=r.start.split('.').map(Number);
       const [eh,em]=r.end.split('.').map(Number);
       const date=new Date(baseDate);
       date.setDate(baseDate.getDate()+dayIdx);
       const dtStart=`${date.getFullYear()}${String(date.getMonth()+1).padStart(2,'0')}${String(date.getDate()).padStart(2,'0')}T${String(sh).padStart(2,'0')}${String(sm).padStart(2,'0')}00`;
       const dtEnd=`${date.getFullYear()}${String(date.getMonth()+1).padStart(2,'0')}${String(date.getDate()).padStart(2,'0')}T${String(eh).padStart(2,'0')}${String(em).padStart(2,'0')}00`;
-      lines.push('BEGIN:VEVENT',`UID:${c.kode}-${dk}@jadwalkuliah`,`DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').split('.')[0]}Z`,`DTSTART;TZID=Asia/Jakarta:${dtStart}`,`DTEND;TZID=Asia/Jakarta:${dtEnd}`,`RRULE:FREQ=WEEKLY;COUNT=16`,`SUMMARY:${c.nama}`,`LOCATION:${c.ruang}`,`DESCRIPTION:Kode: ${c.kode}\\nDosen: ${c.dosen}\\nKelas: ${c.kelas}`,'END:VEVENT');
+      lines.push('BEGIN:VEVENT',`UID:${c.kode}-${dk}@jadwalvolta`,`DTSTAMP:${stamp}`,`DTSTART;TZID=Asia/Jakarta:${dtStart}`,`DTEND;TZID=Asia/Jakarta:${dtEnd}`,`RRULE:FREQ=WEEKLY;COUNT=16`,`SUMMARY:${icsEscape(c.nama)}`,`LOCATION:${icsEscape(c.ruang)}`,`DESCRIPTION:Kode: ${icsEscape(c.kode)}\\nDosen: ${icsEscape(c.dosen)}\\nKelas: ${icsEscape(c.kelas)}`,'END:VEVENT');
     });
   });
+
+  eventsData.forEach(ev=>{
+    lines.push('BEGIN:VEVENT',
+      `UID:${ev.id}@jadwalvolta`,
+      `DTSTAMP:${stamp}`,
+      `DTSTART;TZID=Asia/Jakarta:${icsLocalStamp(ev.tanggal,ev.mulai)}`,
+      `DTEND;TZID=Asia/Jakarta:${icsLocalStamp(ev.tanggal,ev.selesai)}`,
+      `SUMMARY:${icsEscape(ev.nama)}`,
+      `LOCATION:${icsEscape(ev.ruang)}`,
+      `DESCRIPTION:${icsEscape(`${ev.kode} • ${ev.sesi} • Kursi ${ev.kursi} • ${ev.dosen}`)}`,
+      'END:VEVENT');
+  });
+
+  const mNext = nextMentoringDate(new Date());
+  const mDate = dateKey(mNext);
+  lines.push('BEGIN:VEVENT',
+    `UID:mentoring-aik@jadwalvolta`,
+    `DTSTAMP:${stamp}`,
+    `DTSTART;TZID=Asia/Jakarta:${icsLocalStamp(mDate,mentoringData.mulai)}`,
+    `DTEND;TZID=Asia/Jakarta:${icsLocalStamp(mDate,mentoringData.selesai)}`,
+    'RRULE:FREQ=WEEKLY;COUNT=16',
+    `SUMMARY:${icsEscape(mentoringData.nama)}`,
+    `LOCATION:${icsEscape(mentoringData.ruang)}`,
+    `DESCRIPTION:${icsEscape(mentoringData.catatan)}`,
+    'END:VEVENT');
+
   lines.push('END:VCALENDAR');
   const blob=new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;a.download='jadwal-kuliah-ums.ics';a.click();
+  a.href=url;a.download='jadwal-volta-v2.ics';a.click();
   URL.revokeObjectURL(url);
 });
 
@@ -2057,7 +2353,7 @@ function initMenu(){
   });
 }
 function initScrollSpy(){
-  const sections=['today','weekly','materi','silabus','courses','peta','konsentrasi','tools','roadmap'];
+  const sections=['today','agenda','weekly','materi','silabus','courses','peta','konsentrasi','tools','roadmap'];
   const navLinks=document.querySelectorAll('.header-nav a');
   const header = document.getElementById('siteHeader');
   let ticking = false;
@@ -2114,6 +2410,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderTodaySummary();
   renderSchedule('senin');
   renderWeekOverview();
+  renderAgenda();
   initMateri();
   initSilabus();
   renderCourseList();
