@@ -1043,9 +1043,10 @@ body.uts-mode .today-summary::after{content:"MASA UTS";background:var(--tomato-i
 }
 .agenda-row::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:var(--mustard);opacity:var(--row-tint,0);
+  background:var(--ink);opacity:0;
   transition:opacity .2s ease;
 }
+.agenda-row:nth-child(even)::before{opacity:.07}
 .agenda-row:hover::before,.agenda-row.is-today::before{opacity:0}
 .agenda-row > *{position:relative;z-index:1}
 .agenda-row:hover{background:#fff8e6}
@@ -3150,7 +3151,7 @@ function renderAgenda(){
   const HARI = ['MIN','SEN','SEL','RAB','KAM','JUM','SAB'];
   const BULAN = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGU','SEP','OKT','NOV','DES'];
 
-  list.innerHTML = eventsData.map((ev, i)=>{
+  list.innerHTML = eventsData.map(ev=>{
     const d = new Date(`${ev.tanggal}T00:00:00`);
     const start = eventStartDate(ev);
     const end = eventEndDate(ev);
@@ -3164,7 +3165,7 @@ function renderAgenda(){
     else if(diff === 1){ cdLabel='Besok'; cdCls=''; rowCls=''; }
     else { cdLabel='H-'+diff; cdCls=''; rowCls=''; }
 
-    return `<div class="agenda-row ${rowCls}" style="--row-tint:${(0.03 + i * 0.01).toFixed(3)}">
+    return `<div class="agenda-row ${rowCls}">
       <div class="agenda-date">
         <span class="dow">${HARI[d.getDay()]}</span>
         <span class="num">${d.getDate()}</span>
